@@ -11,7 +11,7 @@ public class App
         //RatesFileReader rates = new RatesFileReader("resources/rates.json");
         RatesDTO rates = new RatesDTO("resources/rates.json");
         //rates.printRates();
-        System.out.println(rates.getSuccessValue());
+        System.out.println(rates.getTimeStampValue());
 
     }
 }

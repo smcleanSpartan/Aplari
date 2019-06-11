@@ -5,6 +5,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.Date;
 
 public class RatesDTO {
 
@@ -29,6 +30,23 @@ public class RatesDTO {
 
     public boolean getSuccessValue(){
         return (boolean) fullRatesFile.get("success");
+    }
+
+    public Date getTimeStampValue(){
+        long epoch = (long) fullRatesFile.get("timestamp");
+        return new Date(epoch * 1000);
+    }
+
+    public String getBaseRateValue(){
+        return (String) fullRatesFile.get("base");
+    }
+
+    public Date getDateValue(){
+        return (Date) fullRatesFile.get("date");
+    }
+
+    public double getRatesValue(){
+        return (double) fullRatesFile.get("date");
     }
 
     /*public boolean getSuccessValue(){
