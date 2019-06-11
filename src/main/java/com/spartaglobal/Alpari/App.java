@@ -8,6 +8,10 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        //RatesFileReader rates = new RatesFileReader("resources/rates.json");
+        RatesDTO rates = new RatesDTO("resources/rates.json");
+        //rates.printRates();
+        System.out.println(rates.getSuccessValue());
+
     }
 }
