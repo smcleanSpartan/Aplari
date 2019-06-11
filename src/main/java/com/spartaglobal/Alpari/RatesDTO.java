@@ -5,7 +5,11 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.Locale;
+
 
 public class RatesDTO {
 
@@ -41,12 +45,14 @@ public class RatesDTO {
         return (String) fullRatesFile.get("base");
     }
 
-    public Date getDateValue(){
-        return (Date) fullRatesFile.get("date");
+    public LocalDate getDateValue() {
+        String sDate = (String) fullRatesFile.get("date");
+        LocalDate newDate = LocalDate.parse(sDate);
+        return newDate;
     }
 
-    public double getRatesValue(){
-        return (double) fullRatesFile.get("date");
+    public JSONObject getRatesValue(){
+        return (JSONObject) fullRatesFile.get("rates");
     }
 
     /*public boolean getSuccessValue(){
