@@ -2,17 +2,14 @@ package com.spartaglobal.Alpari;
 
 import java.text.ParseException;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
-    public static void main( String[] args ) throws ParseException {
-        //RatesFileReader rates = new RatesFileReader("resources/rates.json");
+    public static void main( String[] args ) {
+
         RatesDTO rates = new RatesDTO("resources/rates.json");
-        //rates.printRates();
-        System.out.println(rates.getDateValue());
+        rates.printRates();
+        System.out.println(rates.getAllRateKeys());
+        System.out.println(rates.getSpecificRate("AED"));
 
     }
 }

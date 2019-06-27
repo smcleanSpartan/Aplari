@@ -1,5 +1,6 @@
 package com.spartaglobal.Alpari;
 
+import org.json.simple.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -17,7 +18,8 @@ public class ratesTest {
 
     @BeforeClass //Before all test
     public static void setup(){
-        rates = new RatesDTO("resources/rates.json");
+        RatesHTTPManager httpManager = new RatesHTTPManager();
+        rates = new RatesDTO(httpManager.getLatestRates());
     }
 
     @Test
@@ -26,7 +28,22 @@ public class ratesTest {
     }
 
     @Test
-    public void testTimeline(){
-        Assert.assertThat(rates.getTimeStampValue(), is(new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH)));
+    public void baseIsString() {
+        Assert.assertTrue(rates.getBaseRateValue() instanceof String);
+    }
+
+    @Test
+    public void testTimeStamMatchesDate(){
+        Assert.assertEquals( rates.getDateValue().toString(), rates.getTimeStampValue());
+    }
+
+    @Test
+    public void ratesIsEmbededJsonObject() {
+        Assert.assertTrue(JSONObject.class.isInstance(rates.getRatesValue()));
+    }
+
+    @Test
+    public void embededJSONValuesIsDouble() {
+        Assert.assertTrue(Double.class.isInstance(rates.getSpecificRate("AED")));
     }
 }
